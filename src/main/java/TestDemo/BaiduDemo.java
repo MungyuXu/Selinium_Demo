@@ -10,7 +10,7 @@ import java.sql.Driver;
  * 使用断言，若断言值为false，则不执行后面的语句
  * 需要设置VM options为 -ea
  */
-public class baiduDemo {
+public class BaiduDemo {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver","C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe");
         WebDriver driver=new ChromeDriver();

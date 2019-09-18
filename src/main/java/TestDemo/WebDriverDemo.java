@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 /**
  * 打开浏览器进入网址，设置浏览器宽高
  */
-public class webDriverDemo {
+public class WebDriverDemo {
     public static void main(String[] args) throws InterruptedException {
         //指定浏览器驱动路径
         System.setProperty("webdriver.chrome.driver","C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\Application\\chromedriver.exe");
