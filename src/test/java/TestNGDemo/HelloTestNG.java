@@ -1,4 +1,5 @@
 package TestNGDemo;
+import org.testng.SkipException;
 import org.testng.annotations.*;
 
 /**
@@ -7,7 +8,7 @@ import org.testng.annotations.*;
  * @BeforeMethod 在每个测试方法 前 执行   @AfterMethod 在每个测试方法 后 执行
  * @BeforeClass 被注释的方法将在当前类的第一个测试方法调用前运行  @AfterClass
  * @BeforeGroups 被配置的方法将在列表中的gourp前运行。这个方法保证在第一个属于这些组的测试方法调用前立即执行（通过组的形式来运行多个测试方法）
- * （ex：@Test（groups="xxx"））
+ * （ex：@Test（groups="xxx"）  @BeforeGroups("xxx")）
  * @BeforeTest 被注释的方法将在测试运行前运行  @AfterTest
  * @BeforeSuite 被注释的方法将在所有测试运行前运行(在beforeTest前)   @AfterSuite
  * alwaysRun：对于每个bufore方法(beforeSuite, beforeTest, beforeTestClass 和 beforeTestMethod, 但是不包括 beforeGroups):
@@ -21,37 +22,48 @@ import org.testng.annotations.*;
  */
 public class HelloTestNG {
 
-    @BeforeClass
-    public void setUp() {
-        System.out.println("beforeclass:在当前类第一个测试方法执行之前执行");
-        // code that will be invoked when this test is instantiated
+//    @BeforeClass
+//    public void setUp() {
+//        System.out.println("beforeclass:在当前类第一个测试方法执行之前执行");
+//        // code that will be invoked when this test is instantiated
+//    }
+//
+//    @BeforeSuite
+//    public  void  beforeSuit(){
+//        System.out.println("beforeSuit:在所有测试运行前运行（在beforeTest前）");
+//    }
+
+//    @AfterClass
+//    public  void  afterClass(){
+//        System.out.println("afterclass：当前类所有方法执行完以后执行");
+//    }
+//
+//    @BeforeMethod
+//    public void beforeMethod(){
+//        System.out.println("beforeMethos:在每个测试方法执行前执行（每个测试方法执行前都执行一次本方法）");
+//    }
+//
+//    @BeforeTest
+//    public  void  beforeTest(){
+//        System.out.println("BeforeTest:被注释的方法将在测试运行前运行(在beforeClass之前执行)");
+//    }
+
+    //不写组名就不执行
+    @BeforeGroups("")
+    public void beforeGroup(){
+        System.out.println("beforeGroup:");
     }
 
-    @BeforeSuite
-    public  void  beforeSuit(){
-        System.out.println("beforeSuit:在所有测试运行前运行（在beforeTest前）");
-    }
-
-    @AfterClass
-    public  void  afterClass(){
-        System.out.println("afterclass：当前类所有方法执行完以后执行");
-    }
-
-    @BeforeMethod
-    public void beforeMethod(){
-        System.out.println("beforeMethos:在每个测试方法执行前执行（每个测试方法执行前都执行一次本方法）");
-    }
-
-    @BeforeTest
-    public  void  beforeTest(){
-        System.out.println("BeforeTest:被注释的方法将在测试运行前运行(在beforeClass之前执行)");
-    }
+//    @Test(groups = { "fast" })
+//    public void aFastTest() {
+//        int a=0;
+//        assert (a==1):"断言结果为false，该方法后面的语句不执行";
+//        System.out.println("Fast test");
+//    }
 
     @Test(groups = { "fast" })
-    public void aFastTest() {
-        int a=0;
-        assert (a==1):"断言结果为false，该方法后面的语句不执行";
-        System.out.println("Fast test");
+    public void aFastTest2() {
+        System.out.println("Fast test2");
     }
 
     @Test(groups = { "slow" })
@@ -59,10 +71,32 @@ public class HelloTestNG {
         System.out.println("Slow test");
     }
 
-    @Test(timeOut = 1)
-    public  void  test1() throws InterruptedException {
-        Thread.sleep(2000);
-        System.out.println("1");
+//    @Test(timeOut = 1)
+//    public  void  test1() throws InterruptedException {
+//        Thread.sleep(2000);
+//        System.out.println("1");
+//    }
+
+
+    /**
+     * @Title: runTest1
+     * @Description:Run the test and throw SkipException
+     * @return: void
+     */
+    @Test
+    public void runTest1() {
+        System.out.println("Start to throw the SkipException");
+        throw new SkipException("skip the test");
     }
 
+    /**
+     * @Title: runTest1
+     * @Description:Run the test and throw Exception
+     * @return: void
+     */
+    @Test
+    public void runTest2() {
+        System.out.println("Start to throw the Exception");
+        assert false:"fail the test";
+    }
 }
