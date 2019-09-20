@@ -35,13 +35,14 @@ public class GetElement {
         JavascriptExecutor js= (JavascriptExecutor) driver;
 
         //新闻文本高亮显示颜色
+        //arguments【】代表js中函数入参，那么arguments[0]可以看为"arguments[0].setAttribute('style',arguments[1]);"这个整体
         js.executeScript("arguments[0].setAttribute('style',arguments[1]);",wid,"background: orange; border: 2px solid red;");
 
         Thread.sleep(2000);
 
 //        wid.sendKeys("test!!!");
         Thread.sleep(6000);
-         driver.quit();
+//         driver.quit();
     }
 }
 
