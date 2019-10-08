@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * pom模式  百度网页实体类BaiduPage在PomPOJO包中
  */
-public class BaiduPagepom {
+public class BaiduPagePom {
     WebDriver driver;
 
     @BeforeClass
